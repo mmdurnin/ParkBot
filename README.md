@@ -11,6 +11,7 @@ ParkBot requires local installation of Python (version 2.7.10 or higher). If you
 
 ## <a id="installation"></a>Installing & Using ParkBot ##
 To use ParkBot, download this project or clone the repository to your local machine: 
+
 `git clone https://github.com/mmdurnin/ParkBot.git`
 
 ## <a id="commands"></a>ParkBot Commands ##
