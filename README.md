@@ -22,12 +22,19 @@ ParkBot requires 4 arguments from the command line:
 2. **Tell ParkBot which JSON file it should reference** with the name of the JSON file: `data.JSON`
     - See below for adding your own JSON files.
 3. **Set ParkBot filter type** with one of the three commands:
+
     `locate`: search parking spots by location (state)
+    
     `find_price_hourly_lte`: search parking spots by max hourly price, inclusive
+    
     `find_price_hourly_gt`: search parking spots by min hourly price, exclusive
+    
 4. **Provide filter specification** depending on previous command:
+
     `locate`: provide two letter abbreviation for state, e.g.: `CA`
+    
     `find_price_hourly_lte`: provide max price query, **in cents**, e.g.: `500` for parking rates $5.00 or less
+    
     `find_price_hourly_gt`: provide min price query, **in cents**, e.g.: `200` for parking rates starting at $2.01
     
 ### Example
