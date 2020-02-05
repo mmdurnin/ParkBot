@@ -1,0 +1,53 @@
+import argparse
+import json
+
+LOCATION_COMMAND = "location"
+MAX_PRICE_COMMAND = "find_price_hourly_lte"
+MIN_PRICE_COMMAND = "find_price_hourly_gt"
+
+# Open file (provided by source file arg) and load as json
+def load_file(filename):
+    try:
+        with open(filename, "r") as file:
+            data = json.load(file)
+        return data
+    except:
+        print("Invalid argument: could not find file '%s'" % filename)
+
+# search by location
+def apply_filters(command):
+    output = []
+    for idx, record in enumerate(spots, start=1):
+        if command == LOCATION_COMMAND:
+            if record["address"]["state"] == args.search_argument: output.append(record["name"])
+        elif command == MAX_PRICE_COMMAND:
+            if record["price_hourly"] <= int(args.search_argument): output.append(record["name"])
+        elif command == MIN_PRICE_COMMAND:
+            if record["price_hourly"] > int(args.search_argument): output.append(record["name"])
+        else: 
+            print "Please provide a valid command: locate, find_price_hourly_lte, or find_price_hourly_gt. Use command -h for help."
+            return 
+    print(", ".join(output))
+
+# Create argument parser
+parkbot = argparse.ArgumentParser("Provide source of parking data & search query for parking spot information.")
+
+# Add arguments to parser
+parkbot.add_argument(dest="source_file",
+    help="Source file name", type=load_file)
+
+parkbot.add_argument(dest="search_command", choices=[LOCATION_COMMAND, MAX_PRICE_COMMAND, MIN_PRICE_COMMAND],
+    help="Search filter type")
+
+parkbot.add_argument(dest="search_argument",
+    help="Search parameter")
+
+
+
+args = parkbot.parse_args()
+spots = args.source_file
+apply_filters(args.search_command)
+
+
+# find a way to express example commands (right now I'm putting them in single pops)
+# find a way to distinguish between keyterms and replace terms (source_fil vs "locate")
