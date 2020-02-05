@@ -5,6 +5,7 @@ ParkBot is a helpful command line tool for quick search on parking spot data. Th
 * [Technologies](#technologies)
 * [Installation](#installation)
 * [ParkBot Commands](#commands)
+* [Error Handling](#debug)
 
 ## <a id="technologies"></a>Technologies ##
 ParkBot requires local installation of Python (version 2.7.10 or higher). If you're unsure, check out this [python installation guide](https://wiki.python.org/moin/BeginnersGuide/Download). ParkBot also uses the argparse Python module.
@@ -42,3 +43,11 @@ ParkBot requires 4 arguments from the command line:
 Church of 8 Wheels, Sweetgreen, Sandwiches n More, AirGarage HQ, Walgreens, The Salon, Archer Salon
 ```
         
+## <a id="debug"></a>Error Handling ##
+#### Too Few Arguments:
+ParkBot will only understand commands that follow the format listed above. You must specify the `./parkbot` script, the JSON file, the command type and the argument. If you do not provide these 4 commands, ParkBot will let you know: `error: too few arguments`
+
+#### Mispellings:
+* Mispelling the JSON file name will result in the following message `Invalid argument: could not find file 'argarage-data.json'`.
+* Mispelling the filter type command (`locate`, `find_price_hourly_lte`, `find_hourly_gt`) will result in a helpful message from parkbot, e.g.: `error: argument search_command: invalid choice: 'lcate' (choose from 'locate', 'find_price_hourly_lte', 'find_price_hourly_gt')`.
+* Mispelling the last argument will be interpreted as no results matching query and will return nothing.
